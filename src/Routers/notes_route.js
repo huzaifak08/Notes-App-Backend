@@ -11,7 +11,6 @@ router.post("/notes/add", async (req, res) => {
     try {
         // const nt = new Notes(req.body);
         const nt = new Notes({
-            id: req.body.id,
             email: req.body.email,
             title: req.body.title,
             content: req.body.content
