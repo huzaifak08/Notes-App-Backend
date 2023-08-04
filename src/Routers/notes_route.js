@@ -54,17 +54,31 @@ router.get("/notes/list/:email", async (req, res) => {
 });
 
 // Delete Note:
-router.delete("/notes/list/:email", async (req, res) => {
+router.delete("/notes/list/:id", async (req, res) => {
     try {
-        const delNt = await Notes.deleteOne({ email: req.params.email });
+        const delNt = await Notes.findByIdAndDelete(req.params.id);
 
-        if (!req.params.email) {
+        if (!req.params.id) {
             res.status(404).send();
         } else {
             res.send(delNt);
         }
     } catch (err) {
         res.status(500).send(err.message);
+    }
+});
+
+// Update Note:
+router.patch("/notes/list/:id", async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const updNt = await Notes.findByIdAndUpdate(_id, req.body, {
+            new: true,
+        });
+
+        res.status(200).send(updNt);
+    } catch (err) {
+        res.status(404).send(err.message);
     }
 });
 

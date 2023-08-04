@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const notesSchema = new mongoose.Schema({
     email: {
         type: String,
-        require: true,
+        // required: true,
     },
     title: {
         type: String,
-        require: true,
+        // required: true,
     },
     content: {
         type: String,
